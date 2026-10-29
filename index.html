@@ -1,0 +1,750 @@
+:root{
+--bg:#0b1220;
+--card:#172033;
+--card2:#0f172a;
+--text:#f8fafc;
+--muted:#bac5d7;
+--accent:#38bdf8;
+--train:#16a34a;
+--rest:#2563eb;
+--paused:#ca8a04;
+--done:#7c3aed;
+--danger:#dc2626;
+--border:#526076;
+--focus:#facc15;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+margin:0;
+font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+background:linear-gradient(180deg,#08101d,#142039);
+color:var(--text);
+min-height:100vh;
+}
+.app{
+max-width:760px;
+margin:auto;
+padding:max(12px,env(safe-area-inset-top)) 12px max(18px,env(safe-area-inset-bottom));
+}
+h1{font-size:1.45rem;margin:.2rem 0}
+h2{font-size:1.05rem;margin:.1rem 0 .9rem}
+.muted{color:var(--muted)}
+.card{
+background:rgba(23,32,51,.98);
+border:1px solid var(--border);
+border-radius:18px;
+padding:14px;
+margin-bottom:12px;
+box-shadow:0 10px 26px rgba(0,0,0,.22);
+}
+.status-card{border-top:8px solid var(--accent);text-align:center}
+.status-card.training{border-color:var(--train)}
+.status-card.rest{border-color:var(--rest)}
+.status-card.paused{border-color:var(--paused)}
+.status-card.completed{border-color:var(--done)}
+.status-card.countdown{border-color:var(--focus)}
+.top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-bottom:10px;
+}
+.install-btn{
+border:0;
+background:#0284c7;
+color:#fff;
+font-weight:800;
+border-radius:12px;
+padding:10px 12px;
+min-height:44px;
+}
+#status{font-weight:800;color:var(--muted)}
+#currentTitle{font-size:1.35rem;font-weight:900;margin:.4rem 0}
+#timer{
+font:900 clamp(3.6rem,18vw,6rem)/1 ui-monospace,Consolas,monospace;
+letter-spacing:-.08em;
+margin:.35rem 0;
+}
+.subline{color:var(--muted);font-size:.95rem}
+.progress-track{
+height:16px;background:#08101d;border-radius:999px;overflow:hidden;
+border:1px solid var(--border);margin:12px 0 8px;
+}
+#progressBar{
+height:100%;width:0%;
+background:linear-gradient(90deg,#22c55e,#38bdf8);
+transition:width .18s linear;
+}
+.progress-meta{
+display:flex;justify-content:space-between;gap:10px;
+color:var(--muted);font-size:.92rem;
+}
+.controls{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:12px;
+}
+.controls .full{grid-column:1/-1}
+button{
+border:0;border-radius:16px;padding:15px 14px;min-height:54px;
+color:#fff;font-size:1rem;font-weight:800;background:#334155;
+}
+button:disabled{opacity:.45}
+.primary{background:#0284c7}
+.warning{background:#a16207}
+.danger{background:#b91c1c}
+.success{background:#15803d}
+.ghost{background:#1f2937}
+.notice{
+background:#0f172a;
+color:var(--muted);
+border-radius:12px;
+padding:12px;
+font-size:.95rem;
+margin-top:12px;
+}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tab{
+flex:1;background:#0f172a;color:#fff;border:1px solid var(--border);
+border-radius:12px;padding:12px;font-weight:800;
+}
+.tab.active{background:#1d4ed8}
+.panel{display:none}
+.panel.active{display:block}
+.list{display:grid;gap:10px}
+.item{
+background:var(--card2);
+border-left:6px solid var(--rest);
+border-radius:14px;
+padding:12px;
+}
+.item.work{border-color:var(--train)}
+.item.picked{outline:3px solid var(--accent)}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.handle{
+display:inline-block;background:#111827;color:var(--muted);
+border:1px solid var(--border);border-radius:10px;padding:7px 10px;font-weight:900;
+}
+.stack{display:grid;gap:8px;margin-top:10px}
+.mini-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.small{min-height:44px;padding:10px 12px;border-radius:12px}
+input[type=text],input[type=number],select{
+width:100%;
+background:#08101d;color:#fff;border:1px solid var(--border);
+border-radius:12px;padding:12px;font-size:16px;
+}
+.setting{margin:12px 0}
+.setting-head,.switch{display:flex;justify-content:space-between;align-items:center;gap:10px}
+input[type=range]{width:100%}
+.plan{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.plan li{
+padding:10px 12px;background:#0f172a;border-left:5px solid var(--border);border-radius:10px;
+}
+.plan li.train{border-color:var(--train)}
+.plan li.rest{border-color:var(--rest)}
+.plan li.active{outline:3px solid var(--focus)}
+.actions{display:grid;gap:10px;margin-top:12px}
+
+
+
+
+
+
+Intervalltraining
+PWA für das Handy
+
+Installieren
+
+
+
+Bereit
+Training noch nicht gestartet
+00:30
+Individueller Trainingsplan
+Als Nächstes: Erste Übung
+
+
+
+
+
+0 %
+0 von 0
+
+
+
+Training starten
+Pause
+Abbrechen
+
+
+Bildschirmaktivierung: noch nicht angefordert.
+
+
+
+Plan
+Vorschau
+Einstellungen
+
+
+
+Trainingsplan bearbeiten
+Auf dem Handy: erst den Griff antippen, dann auf den Zielabschnitt tippen.
+
+
++ Training ergänzen
++ Pause ergänzen
+Standardplan wiederherstellen
+
+
+
+
+Vorschau
+
+
+
+
+
+Einstellungen
+
+
+
+Signaltöne
+
+
+
+
+
+
+Lautstärke
+70 %
+
+
+
+
+
+
+Sprachansagen
+
+
+
+
+
+
+Sprechtempo
+1.0x
+
+
+
+
+
+
+
+
+
+
+'use strict';
+(()=>{
+const KEYS={
+plan:'pwa.interval.plan.v1',
+settings:'pwa.interval.settings.v1'
+};
+
+const $=id=>document.getElementById(id);
+const el={
+statusCard:$('statusCard'),
+status:$('status'),
+current:$('currentTitle'),
+timer:$('timer'),
+position:$('positionInfo'),
+next:$('nextInfo'),
+bar:$('progressBar'),
+progressText:$('progressText'),
+count:$('sectionCount'),
+start:$('startBtn'),
+pause:$('pauseBtn'),
+abort:$('abortBtn'),
+editor:$('editorList'),
+addWork:$('addWorkBtn'),
+addRest:$('addRestBtn'),
+reset:$('resetPlanBtn'),
+planList:$('planList'),
+total:$('totalDuration'),
+sound:$('soundEnabled'),
+volume:$('volume'),
+volumeValue:$('volumeValue'),
+speechEnabled:$('speechEnabled'),
+speechRate:$('speechRate'),
+speechRateValue:$('speechRateValue'),
+wake:$('wakeInfo'),
+install:$('installBtn'),
+announcer:$('announcer'),
+error:$('errorAnnouncer')
+};
+
+const safe=(k,f)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??f}catch{return f}};
+const uid=()=>crypto.randomUUID?crypto.randomUUID():${Date.now()}-${Math.random()};
+const esc=s=>String(s).replace(/[&"']/g,c=>({'&':'&amp;','':'&gt;','"':'&quot;',"'":'&#39;'}[c]}));
+const cap=n=>Math.max(5,Math.min(1800,Math.round(Number(n)||5)));
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+function defaultPlan(){
+return [
+{id:uid(),type:'work',name:'Hampelmänner',duration:30},
+{id:uid(),type:'rest',name:'Pause',duration:20},
+{id:uid(),type:'work',name:'Squats',duration:30},
+{id:uid(),type:'rest',name:'Pause',duration:20},
+{id:uid(),type:'work',name:'Plank',duration:30}
+];
+}
+
+class AudioEngine{
+constructor(){this.ctx=null;this.nodes=[]}
+async init(){
+if(!el.sound.checked)return;
+const Ctx=window.AudioContext||window.webkitAudioContext;
+if(!Ctx)return;
+this.ctx??=new Ctx();
+if(this.ctx.state==='suspended')await this.ctx.resume();
+}
+stop(){
+this.nodes.forEach(n=>{try{n.stop()}catch{}});
+this.nodes=[];
+}
+tone(f,delay,len){
+if(!this.ctx||!el.sound.checked||this.ctx.state!=='running')return;
+const o=this.ctx.createOscillator(),g=this.ctx.createGain(),t=this.ctx.currentTime+delay,v=(+el.volume.value/100)*.18;
+o.frequency.value=f;
+g.gain.setValueAtTime(.0001,t);
+g.gain.exponentialRampToValueAtTime(Math.max(.0001,v),t+.01);
+g.gain.exponentialRampToValueAtTime(.0001,t+len);
+o.connect(g).connect(this.ctx.destination);
+o.start(t);o.stop(t+len+.03);this.nodes.push(o);
+}
+play(type){
+this.stop();
+const map={
+count:[[540,0,.18]],
+go:[[700,0,.12],[980,.14,.24]],
+work:[[760,0,.12],[980,.15,.18]],
+rest:[[650,0,.12],[430,.15,.2]],
+done:[[523,0,.14],[659,.17,.14],[784,.34,.14],[1047,.52,.38]]
+};
+(map[type]||[]).forEach(x=>this.tone(...x));
+}
+}
+
+class SpeechEngine{
+speak(text){
+if(!('speechSynthesis' in window) || !el.speechEnabled.checked || !text)return;
+try{
+speechSynthesis.cancel();
+const u=new SpeechSynthesisUtterance(text);
+u.lang='de-DE';
+u.rate=Number(el.speechRate.value)||1;
+speechSynthesis.speak(u);
+}catch{}
+}
+stop(){try{speechSynthesis.cancel()}catch{}}
+}
+
+class App{
+constructor(){
+this.audio=new AudioEngine();
+this.speech=new SpeechEngine();
+this.plan=this.loadPlan();
+this.settings=safe(KEYS.settings,{sound:true,volume:70,speech:true,speechRate:1});
+this.state='idle';
+this.index=-1;
+this.remaining=0;
+this.endAt=0;
+this.interval=null;
+this.lastSpokenSecond=null;
+this.touchPickedId=null;
+this.wakeLock=null;
+this.installPrompt=null;
+this.countdownAbort=false;
+
+el.sound.checked=this.settings.sound!==false;
+el.volume.value=Number(this.settings.volume)||70;
+el.speechEnabled.checked=this.settings.speech!==false;
+el.speechRate.value=String(Number(this.settings.speechRate)||1);
+
+this.bind();
+this.renderAll();
+this.initPwa();
+}
+
+bind(){
+el.start.onclick=()=>this.start();
+el.pause.onclick=()=>this.state==='paused'?this.resume():this.pause();
+el.abort.onclick=()=>this.abort();
+el.addWork.onclick=()=>this.add('work');
+el.addRest.onclick=()=>this.add('rest');
+el.reset.onclick=()=>this.reset();
+
+el.editor.addEventListener('input',e=>this.edit(e));
+el.editor.addEventListener('touchstart',e=>this.touchPick(e),{passive:true});
+el.editor.addEventListener('click',e=>{this.editorAction(e);this.touchPlace(e)});
+
+el.sound.onchange=()=>this.saveSettings();
+el.volume.oninput=()=>{el.volumeValue.textContent=${el.volume.value} %;this.saveSettings()};
+el.speechEnabled.onchange=()=>this.saveSettings();
+el.speechRate.oninput=()=>{el.speechRateValue.textContent=${Number(el.speechRate.value).toFixed(1)}x;this.saveSettings()};
+
+document.querySelectorAll('.tab').forEach(btn=>{
+btn.addEventListener('click',()=>{
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+btn.classList.add('active');
+$(btn.dataset.panel).classList.add('active');
+});
+});
+
+document.addEventListener('visibilitychange',()=>this.onVisible());
+}
+
+initPwa(){
+if('serviceWorker' in navigator){
+window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+}
+window.addEventListener('beforeinstallprompt',e=>{
+e.preventDefault();
+this.installPrompt=e;
+el.install.hidden=false;
+});
+el.install.onclick=async()=>{
+if(!this.installPrompt)return;
+this.installPrompt.prompt();
+await this.installPrompt.userChoice;
+this.installPrompt=null;
+el.install.hidden=true;
+};
+}
+
+loadPlan(){
+const p=safe(KEYS.plan,null);
+if(!Array.isArray(p)||!p.length)return defaultPlan();
+return p.map(x=>({
+id:x.id||uid(),
+type:x.type==='rest'?'rest':'work',
+name:String(x.name||'Abschnitt'),
+duration:cap(x.duration)
+}));
+}
+
+savePlan(){localStorage.setItem(KEYS.plan,JSON.stringify(this.plan))}
+saveSettings(){
+localStorage.setItem(KEYS.settings,JSON.stringify({
+sound:el.sound.checked,
+volume:+el.volume.value,
+speech:el.speechEnabled.checked,
+speechRate:+el.speechRate.value
+}));
+}
+
+add(type){
+if(this.state!=='idle')return;
+this.plan.push({id:uid(),type,name:type==='work'?'Neue Übung':'Neue Pause',duration:30});
+this.savePlan();
+this.renderAll();
+}
+
+reset(){
+if(this.state!=='idle')return;
+if(!confirm('Standardplan wiederherstellen?'))return;
+this.plan=defaultPlan();
+this.savePlan();
+this.renderAll();
+}
+
+edit(e){
+if(this.state!=='idle')return;
+const row=e.target.closest('[data-id]');
+if(!row)return;
+const item=this.plan.find(x=>x.id===row.dataset.id);
+if(!item)return;
+if(e.target.classList.contains('name'))item.name=e.target.value;
+if(e.target.classList.contains('duration'))item.duration=cap(e.target.value);
+if(e.target.classList.contains('type'))item.type=e.target.value;
+this.savePlan();
+this.renderPreview();
+}
+
+editorAction(e){
+const btn=e.target.closest('button[data-action]');
+if(!btn||this.state!=='idle')return;
+const row=btn.closest('[data-id]');
+if(!row)return;
+const i=this.plan.findIndex(x=>x.id===row.dataset.id);
+if(i0)[this.plan[i-1],this.plan[i]]=[this.plan[i],this.plan[i-1]];
+if(btn.dataset.action==='down'&&ix.id===fromId);
+const to=this.plan.findIndex(x=>x.id===toId);
+if(fromx.type==='work'))return this.error('Bitte mindestens eine Übung anlegen.');
+await this.audio.init();
+this.state='countdown';
+this.lockEditor(true);
+for(const n of [3,2,1]){
+if(this.countdownAbort)return;
+el.statusCard.className='card status-card countdown';
+el.status.textContent='Startet gleich';
+el.current.textContent='Vorbereitung';
+el.timer.textContent=00:0${n};
+el.position.textContent='Trainingsstart';
+el.next.textContent=Als Nächstes: ${this.label(this.plan[0])};
+el.count.textContent='Countdown läuft';
+this.audio.play('count');
+this.speech.speak(String(n));
+await sleep(1000);
+}
+if(this.countdownAbort){this.resetIdle();return}
+this.audio.play('go');
+this.speech.speak('Los');
+await this.requestWake();
+this.index=0;
+this.state='running';
+this.begin();
+}
+
+begin(){
+const item=this.plan[this.index];
+if(!item)return this.complete();
+this.remaining=item.duration*1000;
+this.endAt=performance.now()+this.remaining;
+this.lastSpokenSecond=null;
+el.statusCard.className=card status-card ${item.type==='work'?'training':'rest'};
+el.status.textContent=item.type==='work'?'Aktive Trainingszeit':'Erholung';
+el.current.textContent=item.name;
+el.position.textContent=Abschnitt ${this.index+1} von ${this.plan.length};
+el.next.textContent=Als Nächstes: ${this.label(this.plan[this.index+1])};
+el.count.textContent=${this.index} von ${this.plan.length} erledigt;
+this.audio.play(item.type==='work'?'work':'rest');
+
+if(item.type === 'work'){
+this.speech.speak(Jetzt ${item.name});
+} else {
+this.speech.speak(Pause);
+}
+
+this.renderPreview();
+this.tick();
+clearInterval(this.interval);
+this.interval=setInterval(()=>this.tick(),200);
+el.start.disabled=true;
+el.pause.disabled=false;
+el.abort.disabled=false;
+}
+
+tick(){
+if(this.state!=='running')return;
+this.remaining=Math.max(0,this.endAt-performance.now());
+const sec=Math.max(0,Math.ceil(this.remaining/1000));
+el.timer.textContent=formatClock(sec);
+const item=this.plan[this.index];
+const frac=item?1-this.remaining/(item.duration*1000):0;
+const p=((this.index+Math.max(0,Math.min(1,frac)))/this.plan.length)*100;
+this.progress(p);
+
+if(sec = 1 && this.lastSpokenSecond !== sec){
+this.lastSpokenSecond = sec;
+this.speech.speak(String(sec));
+}
+
+if(this.remaining=this.plan.length?this.complete():this.begin();
+}
+}
+
+pause(){
+if(this.state==='countdown'){
+this.countdownAbort=true;
+this.audio.stop();
+this.speech.stop();
+this.resetIdle();
+return;
+}
+if(this.state!=='running')return;
+this.remaining=Math.max(0,this.endAt-performance.now());
+clearInterval(this.interval);
+this.state='paused';
+el.pause.textContent='Fortsetzen';
+el.statusCard.className='card status-card paused';
+el.status.textContent='Angehalten';
+this.audio.stop();
+this.speech.stop();
+}
+
+async resume(){
+if(this.state!=='paused')return;
+await this.audio.init();
+this.state='running';
+this.endAt=performance.now()+this.remaining;
+this.lastSpokenSecond=null;
+el.pause.textContent='Pause';
+this.tick();
+clearInterval(this.interval);
+this.interval=setInterval(()=>this.tick(),200);
+this.speech.speak('Fortsetzen');
+}
+
+abort(){
+if(this.state==='idle')return;
+if(!confirm('Training wirklich abbrechen?'))return;
+clearInterval(this.interval);
+this.audio.stop();
+this.speech.stop();
+this.resetIdle();
+}
+
+complete(){
+clearInterval(this.interval);
+this.state='completed';
+this.audio.play('done');
+this.speech.speak('Training abgeschlossen');
+el.statusCard.className='card status-card completed';
+el.status.textContent='Abgeschlossen';
+el.current.textContent='Training beendet';
+el.timer.textContent='00:00';
+el.position.textContent=${this.plan.length} von ${this.plan.length};
+el.next.textContent='Kein weiterer Abschnitt';
+el.count.textContent='Fertig';
+this.progress(100);
+this.releaseWake();
+el.start.disabled=false;
+el.pause.disabled=true;
+el.abort.disabled=true;
+this.lockEditor(false);
+setTimeout(()=>this.resetIdle(),4000);
+}
+
+resetIdle(){
+clearInterval(this.interval);
+this.state='idle';
+this.index=-1;
+this.remaining=0;
+this.endAt=0;
+this.lastSpokenSecond=null;
+this.touchPickedId=null;
+this.countdownAbort=false;
+this.releaseWake();
+el.statusCard.className='card status-card';
+el.status.textContent='Bereit';
+el.current.textContent='Training noch nicht gestartet';
+el.timer.textContent=formatClock(this.plan[0]?.duration||0);
+el.position.textContent='Individueller Trainingsplan';
+el.next.textContent=Als Nächstes: ${this.label(this.plan[0])};
+el.count.textContent=0 von ${this.plan.length};
+this.progress(0);
+el.start.disabled=false;
+el.pause.disabled=true;
+el.abort.disabled=true;
+el.pause.textContent='Pause';
+this.lockEditor(false);
+this.renderEditor();
+this.renderPreview();
+}
+
+renderEditor(){
+el.editor.innerHTML=this.plan.map((x,i)=>`
+
+
+☰ ${i+1}. ${x.type==='work'?'Training':'Pause'}
+${formatClock(x.duration)}
+
+
+
+
+Training
+Pause
+
+
+
+Hoch
+Runter
+Löschen
+
+
+
+`).join('');
+}
+
+renderPreview(){
+el.planList.innerHTML='';
+this.plan.forEach((x,i)=>{
+const li=document.createElement('li');
+li.className=x.type==='work'?'train':'rest';
+if(i===this.index&&['running','paused'].includes(this.state))li.classList.add('active');
+li.textContent=${i+1}. ${x.name} – ${formatClock(x.duration)};
+el.planList.appendChild(li);
+});
+const total=this.plan.reduce((a,x)=>a+x.duration,0);
+el.total.textContent=Gesamtdauer: ${formatDuration(total)} · ${this.plan.filter(x=>x.type==='work').length} Übungen · ${this.plan.filter(x=>x.type==='rest').length} Pausen;
+}
+
+renderAll(){
+el.volumeValue.textContent=${el.volume.value} %;
+el.speechRateValue.textContent=${Number(el.speechRate.value).toFixed(1)}x;
+this.renderEditor();
+this.renderPreview();
+this.resetIdle();
+}
+
+label(x){return x?x.name:'Training beendet'}
+progress(v){
+const p=Math.max(0,Math.min(100,v));
+el.bar.style.width=${p}%;
+el.progressText.textContent=${Math.round(p)} %;
+}
+
+lockEditor(lock){
+el.editor.querySelectorAll('input,select,button').forEach(x=>x.disabled=lock);
+el.addWork.disabled=lock;
+el.addRest.disabled=lock;
+el.reset.disabled=lock;
+}
+
+async requestWake(){
+if(!('wakeLock' in navigator)){
+el.wake.textContent='Bildschirmaktivierung: nicht verfügbar.';
+return;
+}
+try{
+this.wakeLock=await navigator.wakeLock.request('screen');
+el.wake.textContent='Bildschirmaktivierung: aktiv.';
+}catch{
+el.wake.textContent='Bildschirmaktivierung: konnte nicht aktiviert werden.';
+}
+}
+
+async releaseWake(){
+try{await this.wakeLock?.release()}catch{}
+this.wakeLock=null;
+el.wake.textContent='Bildschirmaktivierung: nicht aktiv.';
+}
+
+onVisible(){
+if(document.visibilityState==='visible'&&this.state==='running')this.tick();
+}
+
+announce(t){
+el.announcer.textContent='';
+setTimeout(()=>el.announcer.textContent=t,20);
+}
+
+error(t){
+el.error.textContent=t;
+alert(t);
+}
+}
+
+function formatClock(s){
+s=Math.max(0,Math.ceil(s));
+return ${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')};
+}
+function formatDuration(s){
+s=Math.max(0,Math.round(s));
+return ${Math.floor(s/60)} Min. ${String(s%60).padStart(2,'0')} Sek.;
+}
+
+new App();
+})();
